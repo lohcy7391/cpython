@@ -4,3 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    labels:
+      - "skip issue"
+      - "skip news"
+    target_branch:
+      - "master"
+      - "3.9"
+      - "3.8"

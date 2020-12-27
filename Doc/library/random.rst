@@ -142,10 +142,11 @@ Functions for integers
 
 .. function:: getrandbits(k)
 
-   Returns a Python integer with *k* random bits. This method is supplied with
-   the MersenneTwister generator and some other generators may also provide it
-   as an optional part of the API. When available, :meth:`getrandbits` enables
-   :meth:`randrange` to handle arbitrarily large ranges.
+   Returns a non-negative Python integer with *k* random bits. This method
+   is supplied with the MersenneTwister generator and some other generators
+   may also provide it as an optional part of the API. When available,
+   :meth:`getrandbits` enables :meth:`randrange` to handle arbitrarily large
+   ranges.
 
    .. versionchanged:: 3.9
       This method now accepts zero for *k*.
@@ -318,6 +319,13 @@ be found in any statistics text.
    Gaussian distribution.  *mu* is the mean, and *sigma* is the standard
    deviation.  This is slightly faster than the :func:`normalvariate` function
    defined below.
+
+   Multithreading note:  When two threads call this function
+   simultaneously, it is possible that they will receive the
+   same return value.  This can be avoided in three ways.
+   1) Have each thread use a different instance of the random
+   number generator. 2) Put locks around all calls. 3) Use the
+   slower, but thread-safe :func:`normalvariate` function instead.
 
 
 .. function:: lognormvariate(mu, sigma)
